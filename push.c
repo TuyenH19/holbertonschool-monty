@@ -12,7 +12,7 @@ void push(stack_t **stack, unsigned int line_number)
 	char **tokens;
 	int number;
 	stack_t *my_node;
-	
+
 	my_node = malloc(sizeof(stack_t));
 	if (!my_node)
 	{
@@ -21,7 +21,7 @@ void push(stack_t **stack, unsigned int line_number)
 	}
 
 	tokens = split_line(line);
-	
+
 	number = atoi(tokens[1]);
 	if (number == 0)
 	{

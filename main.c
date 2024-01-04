@@ -7,13 +7,13 @@
 */
 int main(int argc, char **argv)
 {
-    (void) argv;
+	(void) argv;
 
-    if (argc != 2)
-    {
-        dprintf(STDERR_FILENO, "USAGE: monty file\n");
-        exit(EXIT_FAILURE);
-    }
-    handle_file(argv[1]);
-    return (0);
+	if (argc != 2)
+	{
+		dprintf(STDERR_FILENO, "USAGE: monty file\n");
+		exit(EXIT_FAILURE);
+	}
+	handle_file(argv[1]);
+	return (0);
 }
