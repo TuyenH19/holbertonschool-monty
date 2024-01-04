@@ -1,5 +1,5 @@
 #include"monty.h"
-char *line;
+char *line = NULL;
 /**
  * handle_file - handle the file input
  * @filename: name of file
