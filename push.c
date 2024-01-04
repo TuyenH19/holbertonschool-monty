@@ -11,26 +11,27 @@ void push(stack_t **stack, unsigned int line_number)
 {
 	char **tokens;
 	int number;
-	stack_t *my_node;
+	stack_t *my_node = NULL;
 
 	my_node = malloc(sizeof(stack_t));
 	if (!my_node)
 	{
+		free(my_node);
 		dprintf(STDERR_FILENO, "Error: malloc failed\n");
 		exit(EXIT_FAILURE);
 	}
 
 	tokens = split_line(line);
 
-	number = atoi(tokens[1]);
-	if (number == 0)
+	
+	if (tokens[1] == 0)
 	{
-		dprintf(STDERR_FILENO, "L%i: usage: push integer\n", line_number);
+		dprintf(STDERR_FILENO, "L%d: usage: push integer\n", line_number);
 		free(my_node);
 		free(tokens);
 		exit(EXIT_FAILURE);
 	}
-
+	number = atoi(tokens[1]);
 	my_node->n = number;
 	my_node->prev = NULL;
 	my_node->next = *stack;
