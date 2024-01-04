@@ -1,5 +1,6 @@
 #include"monty.h"
 char *line = NULL;
+
 /**
  * handle_file - handle the file input
  * @filename: name of file
@@ -13,7 +14,7 @@ void handle_file(char *filename)
 	int line_number = 1;
 	stack_t *stack;
 
-	file = fopen(filename, "r+");
+	file = fopen(filename, "r");
 	if (!file)
 	{
 		dprintf(STDERR_FILENO, "Error: Can't open file %s\n", filename);
@@ -32,6 +33,23 @@ void handle_file(char *filename)
 		line_number++;
 	}
 	free(line);
-	free(stack);
+	free_stack(stack);
 	fclose(file);
+}
+
+/**
+ * free_stack - free the stack
+ * @stack: the stack to be freed
+ * Return: Nothing
+*/
+void free_stack(stack_t *stack)
+{
+    stack_t *tmp = NULL;
+
+    while (stack != NULL)
+    {
+        tmp = stack;
+        stack = stack->next;
+        free(tmp);
+    }
 }
