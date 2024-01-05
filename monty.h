@@ -37,7 +37,6 @@ typedef struct instruction_s
         void (*f)(stack_t **stack, unsigned int line_number);
 } instruction_t;
 
-char *get_file_extension(char *filename);
 void handle_file(char *filename);
 void get_func(char *line, stack_t **stack, unsigned int line_number);
 int is_integer(const char *str);
