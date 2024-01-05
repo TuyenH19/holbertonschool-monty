@@ -1,6 +1,4 @@
 #include"monty.h"
-char *line = NULL;
-
 /**
  * handle_file - handle the file input
  * @filename: name of file
@@ -9,10 +7,10 @@ char *line = NULL;
 void handle_file(char *filename)
 {
 	FILE *file;
+	char *line = NULL;
 	size_t readsize = 0;
-	void (*func)(stack_t **, unsigned int);
-	int line_number = 1;
-	stack_t *stack;
+	unsigned int line_number = 0;
+	stack_t *stack = NULL;
 
 	file = fopen(filename, "r");
 	if (!file)
@@ -23,23 +21,18 @@ void handle_file(char *filename)
 
 	while (getline(&line, &readsize, file) != -1)
 	{
-		func = get_func();
-		if (func == NULL)
-		{
-			dprintf(STDERR_FILENO, "L%i: unknown instruction %s", line_number, line);
-			exit(EXIT_FAILURE);
-		}
-		func(&stack, line_number);
 		line_number++;
+		get_func(line, &stack, line_number);
 	}
+	fclose(file);
 	free(line);
 	free_stack(stack);
-	fclose(file);
 }
 
 /**
  * free_stack - free the stack
  * @stack: the stack to be freed
+ * 
  * Return: Nothing
 */
 void free_stack(stack_t *stack)
