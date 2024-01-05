@@ -1,23 +1,27 @@
-#include"monty.h"
+#include "monty.h"
 
 /**
- * pop - print the top
+ * pop - remove the top element of the stack
  * @stack: pointer to stack
- * @line_number: line number where push function is called
+ * @line_number: line number where pop function is called
+ *
  * Return: Nothing
-*/
+ */
 void pop(stack_t **stack, unsigned int line_number)
 {
-	(void) line_number;
+	stack_t *temp;
 
-	stack_t *tmp;
+	if (!stack || !*stack)
+	{
+		dprintf(STDERR_FILENO, "L%d: can't pop an empty stack\n", line_number);
+		exit(EXIT_FAILURE);
+	}
+
+	temp = *stack;
+	*stack = (*stack)->next;
 
 	if (*stack)
-	{
-		tmp = *stack;
-		*stack = tmp->next;
-		if (*stack != NULL)
-			(*stack)->prev = NULL;
-		free(tmp);
-	}
+		(*stack)->prev = NULL;
+
+	free(temp);
 }
