@@ -1,4 +1,6 @@
 #include "monty.h"
+#include <unistd.h>
+#include <stdlib>
 
 /**
  * pop - remove the top element of the stack
