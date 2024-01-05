@@ -37,7 +37,6 @@ typedef struct instruction_s
         void (*f)(stack_t **stack, unsigned int line_number);
 } instruction_t;
 
-extern char *line;
 void handle_file(char *filename);
 void (*get_func(void))(stack_t **, unsigned int);
 char **split_line(char *string);
