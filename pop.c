@@ -2,14 +2,14 @@
 
 /**
  * pop - remove the top element of the stack
- * @stack: pointer to stack
- * @line_number: line number where pop function is called
+ * @stack: pointer to the top of the stack
+ * @line_number: current line number
  *
  * Return: Nothing
  */
 void pop(stack_t **stack, unsigned int line_number)
 {
-	stack_t *temp;
+	stack_t *tmp;
 
 	if (!stack || !*stack)
 	{
@@ -17,11 +17,12 @@ void pop(stack_t **stack, unsigned int line_number)
 		exit(EXIT_FAILURE);
 	}
 
-	temp = *stack;
-	*stack = (*stack)->next;
+	tmp = (*stack)->next;
+	free(*stack);
+	*stack = tmp;
 
-	if (*stack)
-		(*stack)->prev = NULL;
+	if (!*stack)
+		return;
 
-	free(temp);
+	(*stack)->prev = NULL;
 }
