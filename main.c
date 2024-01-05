@@ -20,7 +20,7 @@ int main(int argc, char **argv)
 	filename = argv[1];
 	if (strcmp(get_file_extension(filename), "m") != 0)
 	{
-		dprintf(STDERR_FILENO, "%s containing monty instructions with an error\n", filename);
+		fprintf(stderr, "%s containing monty instruction with an error\n", filename);
 		exit(EXIT_FAILURE);
 	}
 	handle_file(filename);
