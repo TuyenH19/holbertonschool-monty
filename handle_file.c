@@ -32,17 +32,17 @@ void handle_file(char *filename)
 /**
  * free_stack - free the stack
  * @stack: the stack to be freed
- * 
+ *
  * Return: Nothing
 */
 void free_stack(stack_t *stack)
 {
-    stack_t *tmp = NULL;
+	stack_t *tmp = NULL;
 
-    while (stack != NULL)
-    {
-        tmp = stack;
-        stack = stack->next;
-        free(tmp);
-    }
+	while (stack != NULL)
+	{
+		tmp = stack;
+		stack = stack->next;
+		free(tmp);
+	}
 }
