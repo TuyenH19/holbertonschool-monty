@@ -7,21 +7,12 @@
 */
 int main(int argc, char **argv)
 {
-	char *filename;
-
-	(void) argv;
-
 	if (argc != 2)
 	{
 		dprintf(STDERR_FILENO, "USAGE: monty file\n");
 		exit(EXIT_FAILURE);
 	}
 
-	filename = argv[1];
-	if (strcmp(get_file_extension(filename), "m") != 0)
-	{
-		exit(EXIT_FAILURE);
-	}
-	handle_file(filename);
+	handle_file(argv[1]);
 	return (0);
 }
